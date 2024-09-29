@@ -1,0 +1,73 @@
+<section class="notification">
+  <button routerLink="/notifications" mat-fab extended>
+    <mat-icon>arrow_back</mat-icon>
+    Назад
+  </button>
+
+  <h4 class="notification__title">Редактирование оповещания </h4>
+
+  @if (!isLoading()) {
+    <div class="notification__form">
+      <form [formGroup]="notificationForm">
+        <div class="notification__top">
+          <div class="notification__field">
+             <span class="notification__field-label">
+              Статус
+            </span>
+            <mat-form-field>
+              <mat-label>Выберите статус</mat-label>
+              <mat-select formControlName="status">
+                @for (status of statuses; track status) {
+                  <mat-option [value]="status">{{ status }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="notification__field">
+            <span class="notification__field-label">
+              Дата и время создания
+            </span>
+            <mat-form-field>
+              <input matInput [matDatepicker]="pickerCreated" formControlName="createdAt">
+              <mat-datepicker-toggle matIconSuffix [for]="pickerCreated"></mat-datepicker-toggle>
+              <mat-datepicker #pickerCreated></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="notification__field">
+            <span class="notification__field-label">
+              Дата и время окончания
+            </span>
+            <mat-form-field>
+              <input matInput [matDatepicker]="pickerFinished" formControlName="finishedAt">
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFinished"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFinished></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="notification__field">
+            <span class="notification__field-label">
+              Краткое описание
+            </span>
+            <mat-form-field>
+              <input matInput placeholder="Введите описание" formControlName="shortDescription" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="notification__field-full-width">
+          <span class="notification__field-label">
+            Полное описание
+          </span>
+          <mat-form-field>
+            <textarea matInput placeholder="Введите описание" formControlName="description"></textarea>
+          </mat-form-field>
+        </div>
+      </form>
+      @if (!isPending()) {
+        <button mat-flat-button [disabled]="notificationForm.invalid" (click)="onSave()">Сохранить</button>
+      } @else {
+        <mat-spinner />
+      }
+    </div>
+  } @else {
+    <mat-spinner/>
+  }
+</section>

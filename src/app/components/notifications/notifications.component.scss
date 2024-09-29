@@ -1,0 +1,20 @@
+.notifications {
+
+  &__spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__table {
+    tr {
+      cursor: pointer;
+      user-select: none;
+      transition: background-color .25s ease-in-out;
+
+      &:hover {
+        background: rgba(64,64,64, 0.15);
+      }
+    }
+  }
+}

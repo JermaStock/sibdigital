@@ -1,0 +1,25 @@
+.notification {
+
+  margin-top: 2rem;
+
+  &__title {
+    margin-top: 1.75rem;
+  }
+
+  &__top {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+
+    &-full-width {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+}
